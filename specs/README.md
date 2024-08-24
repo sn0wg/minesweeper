@@ -16,7 +16,7 @@ O objetivo do jogo consiste em revelar todos os campos sem provocar uma explosã
         1. Explosão: Caso o campo contenha uma bomba, é gerada uma explosão.
         2. Contagem: Caso o campo não contenha uma bomba, ele passa a disponibilizar a quantidade de bomba que existem nos campos adjacentes.
         Obs: Caso não existe nenhuma bomba nas adjacencias, é gerada uma reação em cadeia de revelação dos campos adjacentes.
-    2. Marcando: marca um campo com um dos valores abaixo
+    2. Marcar: marca um campo com um dos valores abaixo
         1. Com bomba: Indica que o campo está escondendo uma bomba
         2. Sem bomba: Indica que não existe uma bomba escondida no campo
 - Todo campo possui uma identificação, que é um ponto no primeiro quadrante de um plano cartesiano (X/Y)
