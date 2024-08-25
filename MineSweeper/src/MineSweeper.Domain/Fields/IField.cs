@@ -5,8 +5,8 @@ public interface IField
     string Identifier { get; }
     FieldState State { get; }
     FieldFlag Flag { get; set; }
-    ushort Line { get; }
-    ushort Column { get; }
-    ushort? AdjacentBombsQty { get; }
+    int Line { get; }
+    int Column { get; }
+    int? AdjacentBombsQty { get; }
     void Reveal();
 }

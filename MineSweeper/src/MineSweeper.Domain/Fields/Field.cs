@@ -5,14 +5,14 @@ internal class Field : IInternalField
     public string Identifier => $"X{Column}-Y{Line}";
     public FieldState State { get; private set; }
     public FieldFlag Flag { get; set; }
-    public ushort Line { get; }
-    public ushort Column { get; }
-    public ushort? AdjacentBombsQty => _adjacentBombsQty;
+    public int Line { get; }
+    public int Column { get; }
+    public int? AdjacentBombsQty => _adjacentBombsQty;
     public bool HasBomb { get; private set; }
     private IDictionary<string, IInternalField> _fieldMap;
-    private ushort? _adjacentBombsQty;
+    private int? _adjacentBombsQty;
 
-    internal Field(ushort line, ushort column)
+    internal Field(int line, int column)
     {
         Line = line;
         Column = column;
@@ -72,11 +72,11 @@ internal class Field : IInternalField
         return true;
     }
 
-    private ushort? GetAdjacentBombs()
+    private int? GetAdjacentBombs()
     {
         if (State == FieldState.Hidden)
             return null;
 
-        return (ushort)_fieldMap.Values.Where(x => x.HasBomb).Count();
+        return _fieldMap.Values.Where(x => x.HasBomb).Count();
     }
 }

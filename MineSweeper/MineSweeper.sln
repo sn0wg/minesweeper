@@ -9,7 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2E89506B-F05
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A086156E-7B72-482A-ACD9-B54466E9A691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeper.Domain.UnitTest", "test\MineSweeper.Domain.UnitTest\MineSweeper.Domain.UnitTest.csproj", "{B925490D-947A-4F62-A001-8FEC8F6FD157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineSweeper.Domain.UnitTest", "test\MineSweeper.Domain.UnitTest\MineSweeper.Domain.UnitTest.csproj", "{B925490D-947A-4F62-A001-8FEC8F6FD157}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{D6E0D969-3DC4-45EC-9BB4-536990081424}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
