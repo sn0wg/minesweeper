@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<InternalsVisibleTo Include="MineSweeper.Domain.UnitTest" />
 		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+		<InternalsVisibleTo Include="MineSweeper.Domain.IntegratedTest" />
 	</ItemGroup>
 
 </Project>

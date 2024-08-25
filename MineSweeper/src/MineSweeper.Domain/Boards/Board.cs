@@ -1,5 +1,5 @@
 ﻿using MineSweeper.Domain.Fields;
-using System.Linq;
+using MineSweeper.Domain.Randoms;
 
 namespace MineSweeper.Domain.Boards;
 
@@ -8,11 +8,13 @@ internal class Board : IBoard
     public IReadOnlyCollection<IReadOnlyCollection<IField>> Fields => _linesAndColumns;
     public int BombQty { get; }
     private readonly IFieldFabric _fieldFabric;
+    private readonly IRandom _random;
     private readonly IInternalField[][] _linesAndColumns;
 
-    internal Board(int lines, int columns, int bombQty, IFieldFabric fabric)
+    internal Board(int lines, int columns, int bombQty, IFieldFabric fabric, IRandom random)
     {
         _fieldFabric = fabric;
+        _random = random;
         _linesAndColumns = new IInternalField[lines][];
 
         for (int i = 0; i < lines; i++)
@@ -63,11 +65,10 @@ internal class Board : IBoard
         }
 
         // Plant bombs
-        var random = new Random();
-        do
+        while (bombQty > 0)
         {
-            var line = random.Next(_linesAndColumns.Length);
-            var column = random.Next(_linesAndColumns[line].Length);
+            var line = _random.GetRandom(0, _linesAndColumns.Length);
+            var column = _random.GetRandom(0, _linesAndColumns[line].Length);
             var field = _linesAndColumns[line][column];
 
             if (field.HasBomb)
@@ -75,6 +76,6 @@ internal class Board : IBoard
 
             field.Plant();
             bombQty--;
-        } while(bombQty > 0);
+        }
     }
 }
