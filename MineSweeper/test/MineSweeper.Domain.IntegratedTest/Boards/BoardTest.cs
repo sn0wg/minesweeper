@@ -29,9 +29,10 @@ public class BoardTest
         // Act
         var board = _boardFabric.Create(columns, lines, bombQty);
 
-        board.Fields.First().First().Reveal();
+        var reveleadQty = board.Fields.First().First().Reveal();
 
         // Assert
+        reveleadQty.Should().Be(9);
         board.BombQty.Should().Be(bombQty);
 
         foreach (var line in board.Fields)
@@ -55,9 +56,10 @@ public class BoardTest
 
         // Act
         var board = _boardFabric.Create(columns, lines, bombQty);
-        board.Fields.First().First().Reveal();
+        var reveleadFields = board.Fields.First().First().Reveal();
 
         // Assert
+        reveleadFields.Should().Be(8);
         board.BombQty.Should().Be(bombQty);
         var bombField = board.Fields.ElementAt(2).ElementAt(2);
 
@@ -96,9 +98,10 @@ public class BoardTest
         // Act
         var board = _boardFabric.Create(columns, lines, bombQty);
         var firstField = board.Fields.First().First();
-        firstField.Reveal();
+        var reveleadFields = firstField.Reveal();
 
         // Assert
+        reveleadFields.Should().Be(1);
         board.BombQty.Should().Be(bombQty);
 
         foreach (var line in board.Fields)
@@ -129,9 +132,10 @@ public class BoardTest
         // Act
         var board = _boardFabric.Create(columns, lines, bombQty);
         var bombField = board.Fields.ElementAt(2).ElementAt(2);
-        bombField.Reveal();
+        var reveleadFields =bombField.Reveal();
 
         // Assert
+        reveleadFields.Should().Be(1);
         board.BombQty.Should().Be(bombQty);
 
         foreach (var line in board.Fields)

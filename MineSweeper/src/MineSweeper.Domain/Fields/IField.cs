@@ -8,5 +8,5 @@ public interface IField
     int Line { get; }
     int Column { get; }
     int? AdjacentBombsQty { get; }
-    void Reveal();
+    int Reveal();
 }

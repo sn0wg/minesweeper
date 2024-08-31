@@ -3,7 +3,7 @@ using MineSweeper.Domain.Randoms;
 
 namespace MineSweeper.Domain.Boards;
 
-internal class BoardFabric : IBoardFabric
+public class BoardFabric : IBoardFabric
 {
     private readonly IFieldFabric _fieldFabric;
     private readonly IRandom _random;

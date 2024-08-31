@@ -22,15 +22,15 @@ internal class Field : IInternalField
         _adjacentBombsQty = null;
     }
 
-    public void Reveal()
+    public int Reveal()
     {
         if (State != FieldState.Hidden)
-            return;
+            return 0;
 
         if (HasBomb)
         {
             State = FieldState.Exploded;
-            return;
+            return 0;
         }
 
         State = FieldState.Revealed;
@@ -38,12 +38,14 @@ internal class Field : IInternalField
         _adjacentBombsQty = GetAdjacentBombs();
 
         if (_adjacentBombsQty > 0)
-            return;
+            return 1;
 
         var noBombFields = _fieldMap.Values.Where(x => x.State == FieldState.Hidden && !x.HasBomb);
 
         foreach (var field in noBombFields)
             field.Reveal();
+
+        return noBombFields.Count();
     }
 
     public void Plant()
