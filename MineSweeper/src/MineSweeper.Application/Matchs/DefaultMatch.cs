@@ -39,6 +39,21 @@ namespace MineSweeper.Application.Match
                 .Select(line => line.Select(field => new ApplicationField(field)).ToList()).ToList();
         }
 
+        public DefaultMatch(int lines, int columns, IBoardFabric boardFabric)
+        {
+            var bombs = Math.Max((int)(lines * columns * 0.10), 1);
+
+            _board = boardFabric.Create(columns, lines, bombs);
+            Difficulty = MatchDifficultyEnum.Custom;
+            Result = MatchResultEnum.None;
+            State = MatchStateEnum.Waiting;
+            RemainingBombs = bombs;
+            RemainingFields = (columns * lines) - RemainingBombs;
+            Fields = _board
+                .Fields
+                .Select(line => line.Select(field => new ApplicationField(field)).ToList()).ToList();
+        }
+
         public void Reveal(int x, int y)
         {
             if (State == MatchStateEnum.Waiting)
