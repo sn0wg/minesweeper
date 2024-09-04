@@ -6,7 +6,6 @@ namespace MineSweeper.Domain.Boards;
 internal class Board : IBoard
 {
     public IReadOnlyCollection<IReadOnlyCollection<IField>> Fields => _linesAndColumns;
-    public int BombQty { get; }
     private readonly IFieldFabric _fieldFabric;
     private readonly IRandom _random;
     private readonly IInternalField[][] _linesAndColumns;
@@ -23,7 +22,6 @@ internal class Board : IBoard
         }
 
         InitBoard(bombQty);
-        BombQty = bombQty;
     }
 
     private void InitBoard(int bombQty)

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\MineSweeper.Domain\MineSweeper.Domain.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="MineSweeper.Application.UnitTest" />
+	</ItemGroup>
+
 </Project>

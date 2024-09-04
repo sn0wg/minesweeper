@@ -49,9 +49,10 @@ public class FieldTest
             field.Plant();
 
         // Act
-        field.Reveal();
+        var reveleadQty = field.Reveal();
 
         // Assert
+        reveleadQty.Should().Be(1);
         var expectedState = hasBomb ? FieldState.Exploded : FieldState.Revealed;
         field.State.Should().Be(expectedState);
     }
@@ -70,9 +71,10 @@ public class FieldTest
         adjacentField2.Plant();
 
         // Act
-        field.Reveal();
+        var reveleadQty = field.Reveal();
 
         // Assert
+        reveleadQty.Should().Be(2);
         field.State.Should().Be(FieldState.Revealed);
         field.AdjacentBombsQty.Should().Be(0);
         adjacentField.AdjacentBombsQty.Should().Be(1);
@@ -91,9 +93,10 @@ public class FieldTest
         adjacentField.Plant();
 
         // Act
-        field.Reveal();
+        var reveleadQty = field.Reveal();
 
         // Assert
+        reveleadQty.Should().Be(1);
         field.State.Should().Be(FieldState.Revealed);
         field.AdjacentBombsQty.Should().Be(1);
         adjacentField.State.Should().Be(FieldState.Hidden);

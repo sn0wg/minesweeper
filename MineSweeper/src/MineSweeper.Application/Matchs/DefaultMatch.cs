@@ -1,10 +1,11 @@
-﻿using MineSweeper.Application.Matchs;
+﻿using MineSweeper.Application.Fields;
+using MineSweeper.Application.Matchs;
 using MineSweeper.Domain.Boards;
 using MineSweeper.Domain.Fields;
 
 namespace MineSweeper.Application.Match
 {
-    internal class DefaultMatch
+    public class DefaultMatch : IMatch
     {
         private readonly IBoard _board;
 
@@ -13,9 +14,9 @@ namespace MineSweeper.Application.Match
         public MatchStateEnum State { get; private set; }
         public int RemainingBombs { get; private set; }
         public int RemainingFields { get; private set; }
-        public IReadOnlyCollection<IReadOnlyCollection<IField>> Fields => _board.Fields;
+        public IReadOnlyCollection<IReadOnlyCollection<IApplicationField>> Fields { get; }
 
-        internal DefaultMatch(MatchDifficultyEnum difficulty, IBoardFabric boardFabric)
+        public DefaultMatch(MatchDifficultyEnum difficulty, IBoardFabric boardFabric)
         {
             var size = difficulty switch
             {
@@ -31,8 +32,11 @@ namespace MineSweeper.Application.Match
             Difficulty = difficulty;
             Result = MatchResultEnum.None;
             State = MatchStateEnum.Waiting;
-            RemainingBombs = _board.BombQty;
+            RemainingBombs = bombs;
             RemainingFields = (size * size) - RemainingBombs;
+            Fields = _board
+                .Fields
+                .Select(line => line.Select(field => new ApplicationField(field)).ToList()).ToList();
         }
 
         public void Reveal(int x, int y)
@@ -51,14 +55,14 @@ namespace MineSweeper.Application.Match
 
             var reveleadFields = field.Reveal();
 
-            RemainingFields -= reveleadFields;
-
             if (field.State == FieldState.Exploded)
             {
                 State = MatchStateEnum.Finished;
                 Result = MatchResultEnum.Loss;
                 return;
             }
+
+            RemainingFields -= reveleadFields;
 
             if (RemainingFields > 0)
                 return;
@@ -69,7 +73,7 @@ namespace MineSweeper.Application.Match
 
         public void Mark(int x, int y, FieldFlag flag)
         {
-            if (State != MatchStateEnum.Running || RemainingBombs == 0)
+            if (State == MatchStateEnum.Finished || RemainingBombs == 0)
                 return;
 
             var field = _board.Fields

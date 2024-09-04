@@ -7,10 +7,10 @@ internal class Field : IInternalField
     public FieldFlag Flag { get; set; }
     public int Line { get; }
     public int Column { get; }
-    public int? AdjacentBombsQty => _adjacentBombsQty;
+    public int? AdjacentBombsQty => State == FieldState.Hidden ? null : _adjacentBombsQty;
     public bool HasBomb { get; private set; }
     private IDictionary<string, IInternalField> _fieldMap;
-    private int? _adjacentBombsQty;
+    private int _adjacentBombsQty;
 
     internal Field(int line, int column)
     {
@@ -19,7 +19,7 @@ internal class Field : IInternalField
         Flag = FieldFlag.None;
         State = FieldState.Hidden;
         _fieldMap = new Dictionary<string, IInternalField>();
-        _adjacentBombsQty = null;
+        _adjacentBombsQty = 0;
     }
 
     public int Reveal()
@@ -27,25 +27,29 @@ internal class Field : IInternalField
         if (State != FieldState.Hidden)
             return 0;
 
+        var reveleadQty = 1;
+
+        _adjacentBombsQty = _fieldMap.Values.Where(x => x.HasBomb).Count();
+
         if (HasBomb)
         {
             State = FieldState.Exploded;
-            return 0;
+            return reveleadQty;
         }
 
         State = FieldState.Revealed;
 
-        _adjacentBombsQty = GetAdjacentBombs();
-
         if (_adjacentBombsQty > 0)
-            return 1;
+            return reveleadQty;        
 
         var noBombFields = _fieldMap.Values.Where(x => x.State == FieldState.Hidden && !x.HasBomb);
 
         foreach (var field in noBombFields)
-            field.Reveal();
+            reveleadQty += field.Reveal();
 
-        return noBombFields.Count();
+        _adjacentBombsQty = _fieldMap.Values.Where(x => x.HasBomb).Count();
+
+        return reveleadQty;
     }
 
     public void Plant()
@@ -72,13 +76,5 @@ internal class Field : IInternalField
         field.Link(this);
 
         return true;
-    }
-
-    private int? GetAdjacentBombs()
-    {
-        if (State == FieldState.Hidden)
-            return null;
-
-        return _fieldMap.Values.Where(x => x.HasBomb).Count();
     }
 }

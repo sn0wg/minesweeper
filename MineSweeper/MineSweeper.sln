@@ -16,9 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeper.Domain.IntegratedTest", "test\MineSweeper.Domain.IntegratedTest\MineSweeper.Domain.IntegratedTest.csproj", "{D14C8768-215F-45D4-B752-E6DB796D7BAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineSweeper.Domain.IntegratedTest", "test\MineSweeper.Domain.IntegratedTest\MineSweeper.Domain.IntegratedTest.csproj", "{D14C8768-215F-45D4-B752-E6DB796D7BAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeper.Application", "src\MineSweeper.Application\MineSweeper.Application.csproj", "{E927C491-DA93-4DC1-9FF9-7209A740B4A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineSweeper.Application", "src\MineSweeper.Application\MineSweeper.Application.csproj", "{E927C491-DA93-4DC1-9FF9-7209A740B4A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeper.Application.UnitTest", "MineSweeper.Application.UnitTest\MineSweeper.Application.UnitTest.csproj", "{69194969-E081-478D-A3AB-3CC150370361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{E927C491-DA93-4DC1-9FF9-7209A740B4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E927C491-DA93-4DC1-9FF9-7209A740B4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E927C491-DA93-4DC1-9FF9-7209A740B4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69194969-E081-478D-A3AB-3CC150370361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69194969-E081-478D-A3AB-3CC150370361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69194969-E081-478D-A3AB-3CC150370361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69194969-E081-478D-A3AB-3CC150370361}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{B925490D-947A-4F62-A001-8FEC8F6FD157} = {A086156E-7B72-482A-ACD9-B54466E9A691}
 		{D14C8768-215F-45D4-B752-E6DB796D7BAA} = {A086156E-7B72-482A-ACD9-B54466E9A691}
 		{E927C491-DA93-4DC1-9FF9-7209A740B4A4} = {2E89506B-F052-4491-82F2-22020DFAEB2C}
+		{69194969-E081-478D-A3AB-3CC150370361} = {A086156E-7B72-482A-ACD9-B54466E9A691}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38738D88-EF12-4860-9604-571402A8F7B7}

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using MineSweeper.Domain.Boards;
 using MineSweeper.Domain.Fields;
+using MineSweeper.Domain.Randoms;
 using NSubstitute;
 using NSubstitute.ReceivedExtensions;
 
@@ -10,11 +11,21 @@ public class BoardTest
 {
     private readonly IFieldFabric _fieldFabric;
     private readonly IList<IInternalField> _fields;
+    private readonly IRandom _random;
 
     public BoardTest()
     {
         _fieldFabric = Substitute.For<IFieldFabric>();
+        _random = Substitute.For<IRandom>();
         _fields = new List<IInternalField>();
+
+        _random.GetRandom(Arg.Any<int>(), Arg.Any<int>()).Returns(x =>
+        {
+            var min = x.ArgAt<int>(0);
+            var max = x.ArgAt<int>(1);
+
+            return new Random().Next(min, max);
+        });
 
         _fieldFabric.Create(Arg.Any<int>(), Arg.Any<int>()).Returns(callInfo =>
         {
@@ -47,7 +58,7 @@ public class BoardTest
         var expectedFields = lines * columns;
 
         // Act
-        var board = new Board(lines, columns, bombs, _fieldFabric);
+        var board = new Board(lines, columns, bombs, _fieldFabric, _random);
 
         // Assert
         _fields.Count.Should().Be(expectedFields);

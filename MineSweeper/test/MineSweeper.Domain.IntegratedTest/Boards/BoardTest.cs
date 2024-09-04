@@ -3,7 +3,6 @@ using MineSweeper.Domain.Boards;
 using MineSweeper.Domain.Fields;
 using MineSweeper.Domain.Randoms;
 using NSubstitute;
-using System.Linq;
 
 namespace MineSweeper.Domain.IntegratedTest.Boards;
 
@@ -33,7 +32,6 @@ public class BoardTest
 
         // Assert
         reveleadQty.Should().Be(9);
-        board.BombQty.Should().Be(bombQty);
 
         foreach (var line in board.Fields)
         {
@@ -60,7 +58,6 @@ public class BoardTest
 
         // Assert
         reveleadFields.Should().Be(8);
-        board.BombQty.Should().Be(bombQty);
         var bombField = board.Fields.ElementAt(2).ElementAt(2);
 
         foreach (var line in board.Fields)
@@ -102,7 +99,6 @@ public class BoardTest
 
         // Assert
         reveleadFields.Should().Be(1);
-        board.BombQty.Should().Be(bombQty);
 
         foreach (var line in board.Fields)
         {
@@ -136,7 +132,6 @@ public class BoardTest
 
         // Assert
         reveleadFields.Should().Be(1);
-        board.BombQty.Should().Be(bombQty);
 
         foreach (var line in board.Fields)
         {
