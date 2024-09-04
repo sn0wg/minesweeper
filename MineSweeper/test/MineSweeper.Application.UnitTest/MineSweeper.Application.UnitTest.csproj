@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\MineSweeper.Application\MineSweeper.Application.csproj" />
+    <ProjectReference Include="..\..\src\MineSweeper.Application\MineSweeper.Application.csproj" />
   </ItemGroup>
 
 </Project>
