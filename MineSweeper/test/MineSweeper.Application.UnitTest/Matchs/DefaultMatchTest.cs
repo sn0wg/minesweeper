@@ -125,4 +125,17 @@ public class DefaultMatchTest
         _field.ReceivedCalls().Should().BeNullOrEmpty();
         match.RemainingBombs.Should().Be(2);
     }
+
+    [Fact]
+    public void RevealAll_WhenIsHidden_ShouldReveal()
+    {
+        // Arrange
+        var match = new DefaultMatch(MatchDifficultyEnum.Easy, _boardFabric);
+
+        // Act
+        match.RevealAll();
+
+        // Assert
+        _field.Received().Reveal();
+    }
 }
