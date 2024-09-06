@@ -13,6 +13,7 @@ namespace MineSweeper.Application.Matchs
         int RemainingBombs { get; }
         int RemainingFields { get; }
         void Reveal(int x, int y);
+        void RevealAll();
         void Mark(int x, int y, FieldFlag flag);
     }
 }

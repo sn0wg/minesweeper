@@ -77,6 +77,12 @@ namespace MineSweeper.Application.Match
                 return;
             }
 
+            if(field.Flag != FieldFlag.None)
+            {
+                field.Flag = FieldFlag.None;
+                RemainingBombs++;
+            }
+
             RemainingFields -= reveleadFields;
 
             if (RemainingFields > 0)
@@ -110,6 +116,14 @@ namespace MineSweeper.Application.Match
                     break;
                 default:
                     throw new NotImplementedException();
+            }
+        }
+
+        public void RevealAll()
+        {
+            foreach(var field in _board.Fields.SelectMany(x => x).Where(x => x.State == FieldState.Hidden))
+            {
+                field.Reveal();
             }
         }
     }
